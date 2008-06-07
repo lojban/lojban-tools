@@ -1,0 +1,6 @@
+[submodule "vendor/plugins/assert-valid-asset"]
+	path = vendor/plugins/assert-valid-asset
+	url = git@github.com:CodeMonkeySteve/assert-valid-asset.git
+[submodule "vendor/plugins/active_scaffold"]
+	path = vendor/plugins/active_scaffold
+	url = git://github.com/activescaffold/active_scaffold.git
