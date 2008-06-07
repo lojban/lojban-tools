@@ -1,0 +1,144 @@
+<?xml version = '1.0'?>
+<kdevelop>
+  <general>
+    <author>Steve Sloan</author>
+    <email>steve@finagle.org</email>
+    <version>0.1</version>
+    <projectmanagement>KDevScriptProject</projectmanagement>
+    <primarylanguage>Ruby</primarylanguage>
+    <keywords>
+      <keyword>Ruby</keyword>
+    </keywords>
+    <ignoreparts>
+      <part>KDevDoxygen</part>
+      <part>KDevdistpart</part>
+      <part>KDevVisualBoyAdvance</part>
+      <part>KDevDebugger</part>
+      <part>kdevfilelist</part>
+      <part>kdevsnippet</part>
+      <part>kdevvalgrind</part>
+      <part>kdevastyle</part>
+      <part>kdevctags2</part>
+      <part>kdevsecurity</part>
+      <part>kdevregexptest</part>
+    </ignoreparts>
+    <projectname>lojban</projectname>
+  </general>
+  <kdevscriptproject>
+    <general>
+      <includepatterns>*.rb,*.erb,*.builder,*.css,*.js,*.yml,*.cgi,*.txt,Rakefile,*.rhtml,*.rxml,*.rjs</includepatterns>
+      <excludepatterns>vendor/*,config/environments/*,config/boot.rb</excludepatterns>
+    </general>
+    <run>
+      <directoryradio>executable</directoryradio>
+      <globalcwd/>
+    </run>
+  </kdevscriptproject>
+  <kdevfileview>
+    <groups>
+      <group pattern="app/controllers/*" name="Controllers" />
+      <group pattern="app/views/main/*" name="Main Views" />
+      <group pattern="app/helpers/*" name="Helpers" />
+      <group pattern="test/functional/*" name="Functional Tests" />
+      <group pattern="app/models/*" name="Models" />
+      <group pattern="test/unit/*" name="Unit Tests" />
+      <group pattern="lib/*" name="Libraries" />
+      <group pattern="db/migrate/*" name="Migrations" />
+      <group pattern="test/fixtures/*" name="Fixtures" />
+      <group pattern="config/*" name="Config" />
+      <group pattern="app/views/layouts/*" name="Layout" />
+      <group pattern="public/stylesheets/*.css" name="StyleSheets" />
+      <group pattern="public/javascripts/*.js" name="JavaScripts" />
+      <group pattern="public/images/*" name="Images" />
+      <group pattern="app/views/*/*" name="Views" />
+      <group pattern="public/*" name="Public" />
+      <group pattern="vendor/*" name="Vendor" />
+      <group pattern="*" name="Other" />
+      <hidenonprojectfiles>true</hidenonprojectfiles>
+      <hidenonlocation>true</hidenonlocation>
+    </groups>
+    <tree>
+      <hidepatterns>*.o,*.lo,CVS</hidepatterns>
+      <hidenonprojectfiles>false</hidenonprojectfiles>
+    </tree>
+  </kdevfileview>
+  <kdevdoctreeview>
+    <ignoretocs>
+      <toc>ada</toc>
+      <toc>ada_bugs_gcc</toc>
+      <toc>bash</toc>
+      <toc>bash_bugs</toc>
+      <toc>c++_bugs_gcc</toc>
+      <toc>clanlib</toc>
+      <toc>w3c-dom-level2-html</toc>
+      <toc>fortran_bugs_gcc</toc>
+      <toc>gnome1</toc>
+      <toc>gnustep</toc>
+      <toc>gtk</toc>
+      <toc>gtk_bugs</toc>
+      <toc>haskell</toc>
+      <toc>haskell_bugs_ghc</toc>
+      <toc>java_bugs_gcc</toc>
+      <toc>java_bugs_sun</toc>
+      <toc>kde2book</toc>
+      <toc>libc</toc>
+      <toc>libstdc++</toc>
+      <toc>opengl</toc>
+      <toc>pascal_bugs_fp</toc>
+      <toc>php</toc>
+      <toc>php_bugs</toc>
+      <toc>perl</toc>
+      <toc>perl_bugs</toc>
+      <toc>python</toc>
+      <toc>python_bugs</toc>
+      <toc>qt-kdev3</toc>
+      <toc>sdl</toc>
+      <toc>stl</toc>
+      <toc>w3c-svg</toc>
+      <toc>sw</toc>
+      <toc>w3c-uaag10</toc>
+      <toc>wxwidgets_bugs</toc>
+    </ignoretocs>
+    <ignoreqt_xml>
+      <toc>Guide to the Qt Translation Tools</toc>
+      <toc>Qt Assistant Manual</toc>
+      <toc>Qt Designer Manual</toc>
+      <toc>Qt Reference Documentation</toc>
+      <toc>qmake User Guide</toc>
+    </ignoreqt_xml>
+    <ignoredoxygen>
+      <toc>KDE Libraries (Doxygen)</toc>
+    </ignoredoxygen>
+  </kdevdoctreeview>
+  <kdevfilecreate>
+    <useglobaltypes>
+      <type ext="rb" />
+      <type ext="rhtml" />
+      <type ext="rxml" />
+      <type ext="rjs" />
+      <type ext="css" />
+      <type ext="js" />
+    </useglobaltypes>
+  </kdevfilecreate>
+  <kdevrubysupport>
+    <run>
+      <interpreter>ruby</interpreter>
+      <shell>/home/steve/src/MoMM/script/console</shell>
+      <terminal>false</terminal>
+      <mainprogram>script/server</mainprogram>
+    </run>
+  </kdevrubysupport>
+  <substmap>
+    <APPNAME>MoMM</APPNAME>
+    <APPNAMELC>momm</APPNAMELC>
+    <APPNAMESC>MoMM</APPNAMESC>
+    <APPNAMEUC>MOMM</APPNAMEUC>
+    <AUTHOR>Steve Sloan</AUTHOR>
+    <EMAIL>steve@finagle.org</EMAIL>
+    <LICENSE>GPL</LICENSE>
+    <LICENSEFILE>COPYING</LICENSEFILE>
+    <VERSION>0.1</VERSION>
+    <YEAR>2008</YEAR>
+    <dest>/home/steve/src/MoMM</dest>
+  </substmap>
+</kdevelop>
