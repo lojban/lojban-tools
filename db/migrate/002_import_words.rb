@@ -3,13 +3,13 @@ require 'rexml/document'
 class ImportWords < ActiveRecord::Migration
   def self.up
     doc = nil
-    say_with_time 'load wordlist (jbo/en)'  do
+    say_with_time 'load wordlist (jbo/eng)'  do
       doc = REXML::Document.new File.open( File.join(RAILS_ROOT, 'public/data/lojban-en.xml') )
     end
 
-    say_with_time "import jbo words"  do
+    say_with_time "import lojban words"  do
       doc.elements.each 'dictionary/direction/valsi'  do |valsi|
-        jbo_word = JboWord.find_or_initialize_by_word valsi.attributes['word']
+        jbo_word = JboWord.find_or_initialize_by_name valsi.attributes['word']
         jbo_word.defn = valsi.elements['definition'].text
         jbo_word.jbo_type = JboType.find_or_create_by_name valsi.attributes['type']
 
@@ -17,22 +17,22 @@ class ImportWords < ActiveRecord::Migration
         jbo_word.notes = el.text  if el
 
         el = valsi.elements['selmaho']
-        jbo_word.token = JboToken.find_or_create_by_token el.text  if el
+        jbo_word.jbo_token = JboToken.find_or_create_by_name el.text  if el
 
         jbo_word.save!
         valsi.elements.each 'rafsi'  do |rafsi|
-          part = JboPart.find_or_initialize_by_word rafsi.text
+          part = JboPart.find_or_initialize_by_name rafsi.text
           part.jbo_word = jbo_word
           part.save!
         end
       end
     end
 
-    say_with_time "import en words"  do
+    say_with_time "import english words"  do
       doc.elements.each 'dictionary/direction/nlword'  do |nlword|
-        en_word = EnWord.find_or_initialize_by_word nlword.attributes['word']
-        en_word.jbo_word = JboWord.find_by_word nlword.attributes['valsi']
-        en_word.save!
+        eng_word = EngWord.find_or_initialize_by_name nlword.attributes['word']
+        eng_word.jbo_word = JboWord.find_by_name nlword.attributes['valsi']
+        eng_word.save!
       end
     end
   end

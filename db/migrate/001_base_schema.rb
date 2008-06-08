@@ -2,7 +2,7 @@ class BaseSchema < ActiveRecord::Migration
   def self.up
     # a.k.a. cmavo, gismu, and lujvo
     create_table :jbo_words  do |t|
-      t.string :word, :null => false
+      t.string :name, :null => false
       t.string :defn, :null => false
       t.string :notes
 
@@ -11,14 +11,14 @@ class BaseSchema < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :jbo_words, :word
+    add_index :jbo_words, :name
 
     # a.k.a. rafsi
     create_table :jbo_parts  do |t|
-      t.string :word
+      t.string :name
       t.references :jbo_word, :null => false
     end
-    add_index :jbo_parts, :word
+    add_index :jbo_parts, :name
     add_index :jbo_parts, :jbo_word_id
 
     create_table :jbo_types  do |t|
@@ -27,15 +27,15 @@ class BaseSchema < ActiveRecord::Migration
 
     # for cmavo
     create_table :jbo_tokens  do |t|
-      t.string :token, :null => false
+      t.string :name, :null => false
     end
 
-    create_table :en_words  do |t|
-      t.string :word, :null => false
+    create_table :eng_words  do |t|
+      t.string :name, :null => false
       t.references :jbo_word, :null => false
     end
-    add_index :en_words, :word
-    add_index :en_words, :jbo_word_id
+    add_index :eng_words, :name
+    add_index :eng_words, :jbo_word_id
   end
 
   def self.down
@@ -43,6 +43,6 @@ class BaseSchema < ActiveRecord::Migration
     drop_table :jbo_parts
     drop_table :jbo_tokens
     drop_table :jbo_types
-    drop_table :en_words
+    drop_table :eng_words
   end
 end
