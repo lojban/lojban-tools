@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title><%= @page_title || "Lojban Reference" %></title>
+  <%= stylesheet_link_tag 'application', :media => 'all' %>
+  <%= javascript_include_tag :defaults %>
+  <%= active_scaffold_includes %>
+</head>
+
+<body>
+  <div id="page">
+    <div id='header'></div>
+    <div id='nav'>
+<!--
+      <ul>
+        <li><#= nav_link "Home",    :controller => 'main',    :action => 'news' %></li>
+        <li><#= nav_link "Music",   :controller => 'main',    :action => 'music' %></li>
+        <li><#= nav_link "Gallery", :controller => 'gallery', :action => 'index' %></li>
+        <li><#= nav_link "Bio",     :controller => 'main',    :action => 'bio' %></li>
+        <li><#= nav_link "Contact", :controller => 'main',    :action => 'contact' %></li>
+      </ul>
+-->
+    </div>
+
+    <div id="main">
+      <% if flash[:notice] -%>
+        <div id='notice'><%= flash[:notice] %></div>
+      <% end -%>
+
+      <%= yield :layout %>
+    </div>
+
+    <div id="footer">
+      <div id="left">
+         <span>la stiv slon &copy; <%= Date.today.year %></span>
+      </div>
+      <div id="right">
+        <span>Some Rights Reserved</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
