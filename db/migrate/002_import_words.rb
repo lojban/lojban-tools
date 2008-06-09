@@ -28,6 +28,29 @@ class ImportWords < ActiveRecord::Migration
       end
     end
 
+    say_with_time "import notes, build word relations"  do
+      doc.elements.each('dictionary/direction/valsi/notes') do |el|
+        jbo_word = JboWord.find_by_name el.elements['..'].attributes['word']
+
+        notes = el.text
+        if notes.gsub! %r{[;,]?\s*\(?(see\s+also:?|cf\.)\s*((\s*(((cmavo list)|se|ve)\s*)?\{([^\}]+)\}[,;]?\s*)+)(([\).;,]+)|$)}i, ''
+          $2.scan /\{([^\}]+)\}/  do |word|
+            if (w = JboWord.find_by_name word)
+              jbo_word.related << w
+            elsif (w = EngWord.find_by_name word)
+              jbo_word.related << w.jbo_word
+            else
+              puts "Can't find word for see-also: #{word}"
+              jbo_word.related << JboWord.new(:name => word)
+            end
+          end
+        end
+        notes.strip!
+        jbo_word.notes = notes  unless notes.empty?
+        jbo_word.save!
+      end
+    end
+
     say_with_time "import english words"  do
       doc.elements.each 'dictionary/direction/nlword'  do |nlword|
         eng_word = EngWord.find_or_initialize_by_name nlword.attributes['word']
@@ -39,7 +62,7 @@ class ImportWords < ActiveRecord::Migration
 
   def self.down
     execute 'DELETE FROM jbo_words'
-#    execute 'DELETE FROM jbo_related'
+    execute 'DELETE FROM jbo_related'
     execute 'DELETE FROM jbo_parts'
     execute 'DELETE FROM jbo_tokens'
     execute 'DELETE FROM jbo_types'

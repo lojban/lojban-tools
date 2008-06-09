@@ -13,6 +13,11 @@ class BaseSchema < ActiveRecord::Migration
     end
     add_index :jbo_words, :name
 
+    create_table :jbo_related, :id => false  do |t|
+      t.references :word1, :null => false
+      t.references :word2, :null => false
+    end
+
     # a.k.a. rafsi
     create_table :jbo_parts  do |t|
       t.string :name
@@ -40,6 +45,7 @@ class BaseSchema < ActiveRecord::Migration
 
   def self.down
     drop_table :jbo_words
+    drop_table :jbo_related
     drop_table :jbo_parts
     drop_table :jbo_tokens
     drop_table :jbo_types
