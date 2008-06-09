@@ -23,3 +23,14 @@ task 'lojban:update', :lang  do |t, args|
     curl.headers['Accept'] = 'application/xml'
   end
 end
+
+desc 'Download lojban word frequencies from lojban.org'
+task 'lojban:update:freqs'  do
+  url = 'http://lojban.org/publications/wordlists/frequencies.txt'
+  dest = File.join RAILS_ROOT, 'public/data', File.basename(url)
+
+  puts "Downloading word frequencies"
+  Curl::Easy.download url, dest  do |curl|
+    curl.verbose = true
+  end
+end
