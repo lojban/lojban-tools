@@ -9,7 +9,7 @@ class ImportWords < ActiveRecord::Migration
 
     say_with_time "import lojban words"  do
       doc.elements.each 'dictionary/direction/valsi'  do |valsi|
-        jbo_word = JboWord.find_or_initialize_by_name valsi.attributes['word']
+        jbo_word = JboWord.new :name => valsi.attributes['word']
         jbo_word.defn = valsi.elements['definition'].text
         jbo_word.jbo_type = JboType.find_or_create_by_name valsi.attributes['type']
 
@@ -21,7 +21,7 @@ class ImportWords < ActiveRecord::Migration
 
         jbo_word.save!
         valsi.elements.each 'rafsi'  do |rafsi|
-          part = JboPart.find_or_initialize_by_name rafsi.text
+          part = JboPart.new :name => rafsi.text
           part.jbo_word = jbo_word
           part.save!
         end
@@ -38,5 +38,11 @@ class ImportWords < ActiveRecord::Migration
   end
 
   def self.down
+    execute 'DELETE FROM jbo_words'
+#    execute 'DELETE FROM jbo_related'
+    execute 'DELETE FROM jbo_parts'
+    execute 'DELETE FROM jbo_tokens'
+    execute 'DELETE FROM jbo_types'
+    execute 'DELETE FROM eng_words'
   end
 end
