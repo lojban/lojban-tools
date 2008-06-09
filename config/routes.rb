@@ -34,7 +34,9 @@ ActionController::Routing::Routes.draw do |map|
   # map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
-#  map.word ':controller/:word', :action => 'show', :word => /.+/
+
+  map.connect ':controller/:action/:word.:format', :word => /\D+/
+  map.word ':controller/:action/:word', :word => /\D+/
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
