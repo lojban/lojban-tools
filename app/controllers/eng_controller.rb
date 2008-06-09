@@ -4,6 +4,7 @@ class EngController < ApplicationController
 
   active_scaffold :eng_word  do |config|
     config.label = "English Translations"
+    config.actions.exclude :create, :update, :delete
     config.list.per_page = 25
 
     columns[:name].label = 'English'

@@ -4,6 +4,7 @@ class JboController < ApplicationController
 
   active_scaffold :jbo_word  do |config|
     config.label = "Lojban Words"
+    config.actions.exclude :create, :update, :delete
     config.columns = [ 'name', 'defn', 'eng_words', 'jbo_type', 'parts', 'notes' ]
     config.list.per_page = 25
 
