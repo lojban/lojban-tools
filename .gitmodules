@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/active_scaffold"]
 	path = vendor/plugins/active_scaffold
 	url = git://github.com/activescaffold/active_scaffold.git
+[submodule "vendor/plugins/acts-as-taggable-on"]
+	path = vendor/plugins/acts-as-taggable-on
+	url = git://github.com/mbleigh/acts-as-taggable-on.git
