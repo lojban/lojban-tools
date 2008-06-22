@@ -9,16 +9,23 @@ class ImportWords < ActiveRecord::Migration
 
     say_with_time "import lojban words"  do
       doc.elements.each 'dictionary/direction/valsi'  do |valsi|
+        tags = []
+
         jbo_word = JboWord.new :name => valsi.attributes['word']
         jbo_word.defn = valsi.elements['definition'].text
-        jbo_word.jbo_type = JboType.find_or_create_by_name valsi.attributes['type']
+
+        if %r{^\(?([0-9a-z -/]{5,43}):}i =~ jbo_word.defn
+          tags << $1.downcase
+        end
+
+        tags << valsi.attributes['type']
+        el = valsi.elements['selmaho']
+        tags << el.text  if el
 
         el = valsi.elements['notes']
         jbo_word.notes = el.text  if el
 
-        el = valsi.elements['selmaho']
-        jbo_word.jbo_token = JboToken.find_or_create_by_name el.text  if el
-
+        jbo_word.tag_list = tags.join(',')
         jbo_word.save!
         valsi.elements.each 'rafsi'  do |rafsi|
           part = JboPart.new :name => rafsi.text

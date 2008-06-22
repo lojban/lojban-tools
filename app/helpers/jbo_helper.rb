@@ -12,4 +12,8 @@ module JboHelper
     notes
   end
 
+  def tag_list_column( word )
+    word.tags.map { |t|  link_to h(t.name), :controller => 'jbo', :action => 'tag', :id => t.name }.join(', ')
+  end
+
 end

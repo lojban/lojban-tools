@@ -26,7 +26,7 @@
   </general>
   <kdevscriptproject>
     <general>
-      <includepatterns>*.rb,*.erb,*.builder,*.css,*.js,*.yml,*.cgi,*.txt,Rakefile,*.rhtml,*.rxml,*.rjs</includepatterns>
+      <includepatterns>*.rb,*.erb,*.builder,*.css,*.js,*.yml,*.cgi,*.txt,Rakefile,*.rake,*.rhtml,*.rxml,*.rjs</includepatterns>
       <excludepatterns>vendor/*,config/environments/*,config/boot.rb</excludepatterns>
     </general>
     <run>
@@ -37,7 +37,6 @@
   <kdevfileview>
     <groups>
       <group pattern="app/controllers/*" name="Controllers" />
-      <group pattern="app/views/main/*" name="Main Views" />
       <group pattern="app/helpers/*" name="Helpers" />
       <group pattern="test/functional/*" name="Functional Tests" />
       <group pattern="app/models/*" name="Models" />

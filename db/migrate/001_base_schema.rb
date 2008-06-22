@@ -5,10 +5,6 @@ class BaseSchema < ActiveRecord::Migration
       t.string :name, :null => false
       t.string :defn, :null => false
       t.string :notes
-
-      t.references :jbo_type, :null => false
-      t.references :jbo_token
-
       t.timestamps
     end
     add_index :jbo_words, :name
@@ -25,11 +21,6 @@ class BaseSchema < ActiveRecord::Migration
       t.string :name, :null => false
     end
 
-    # for cmavo
-    create_table :jbo_tokens  do |t|
-      t.string :name, :null => false
-    end
-
     create_table :eng_words  do |t|
       t.string :name, :null => false
       t.references :jbo_word, :null => false
@@ -41,8 +32,6 @@ class BaseSchema < ActiveRecord::Migration
   def self.down
     drop_table :jbo_words
     drop_table :jbo_parts
-    drop_table :jbo_tokens
-    drop_table :jbo_types
     drop_table :eng_words
   end
 end

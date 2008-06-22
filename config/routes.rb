@@ -34,9 +34,10 @@ ActionController::Routing::Routes.draw do |map|
   # map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
+  map.root :controller => 'jbo', :action => 'main'
 
-  map.connect ':controller/:action/:word.:format', :word => /\D+/
-  map.word ':controller/:action/:word', :word => /\D+/
+#  map.connect ':controller/:action/:word.:format', :word => /\D+/
+#  map.word ':controller/:action/:word', :word => /\D+/
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
